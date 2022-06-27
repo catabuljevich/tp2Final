@@ -201,5 +201,16 @@ async function updateTicket(ticket, id){
     return result;
 }
 
+async function deleteProyect(id){
+    const clientMongo = await connection.getConnection();
+    const result = await clientMongo
+        .db('tp2_final')
+        .collection('proyectos')
+        .deleteOne({_id: new objectId(id)})
 
-module.exports = { getProjects, newProject, updateProject, getTickets, getTicket, getTeam, removeTeamMemeber, removeFromAllTeams, unassignFromAllTickets, getProject, getAllTeams, updateTeam, updateTicket }
+    return result;
+}
+
+
+module.exports = { getProjects, newProject, updateProject, getTickets, getTicket, getTeam, removeTeamMemeber, removeFromAllTeams,
+     unassignFromAllTickets, getProject, getAllTeams, updateTeam, updateTicket, deleteProyect }

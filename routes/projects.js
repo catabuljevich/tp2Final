@@ -83,5 +83,10 @@ router.put('/updateTeam/:id', async(req, res) => {
   res.json(result)
 })
 
+router.delete('/:id', async(req, res) => {
+  const result = await data.deleteProyect(req.params.id)
+  res.json(result)
+})
+
 
 module.exports = router;
