@@ -9,7 +9,7 @@ var devsRouter = require("./routes/devs");
 var projectsRouter = require("./routes/projects");
 var usersRouter = require("./routes/users");
 var managsRouter = require("./routes/managers");
-const auth = require("./../middlewares/Auth");
+const auth = require("./middlewares/Auth");
 
 var app = express();
 
