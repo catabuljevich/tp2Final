@@ -35,56 +35,48 @@ router.get('/team/:name', async(req, res, next) => {
   res.json(team);
 });
 
-//Remover desarrollador de un equipo
-router.put('/team/remove/:team_id/:user_id', async(req, res) => {
-  const team_id = req.params.team_id;
-  const user_id = req.params.user_id;
-  const result = await controller.removeTeamMember(team_id, user_id);
-  res.json(result);
-});
-
-
+//Remover desarrollador del equipo
 router.put('/removeFromAllTeams/:id', async(req, res) => {
   const id = req.params.id;
   const result = await controller.removeFromAllTeams(id);
   res.json(result);
 });
 
-//elimina al desarrollador de todos los tickets asignado
-router.put('/unassignFromAllTickets/:id', async(req, res) => {
-  const id = req.params.id;
-  const result = await controller.unassignFromAllTickets(id);
-  res.json(result);
-});
 
+//get all teams
 router.get('/teams', async(req, res, next) => {
   const teams = await controller.getAllTeams();
   res.json(teams);
 });
 
+//get project by id
 router.get('/:id', async(req, res) => {
   const id = req.params.id;
   const project = await controller.getProject(id);
   res.json(project);
 });
 
+//Update ticket
 router.put('/updateTicket/:id', async(req, res) => {
   const ticket = req.body;
   const result = await controller.updateTicket(ticket, req.params.id)
   res.json(result)
 })
 
+//update team
 router.put('/updateTeam/:id', async(req, res) => {
   const team = req.body;
   const result = await controller.updateTeam(team, req.params.id)
   res.json(result)
 })
 
+//delete project
 router.delete('/:id', async(req, res) => {
   const result = await controller.deleteProject(req.params.id)
   res.json(result)
 })
 
+//get ticket by id
 router.get('/ticket/:id', async(req, res, next) => {
   const id = req.params.id;
   const ticket = await controller.getTicket(id);

@@ -86,24 +86,6 @@ async function getTeam(name){
 }
 
 
-async function removeTeamMember(team_id, user_id){
-    const clientMongo = await connection.getConnection();
-    const result = await clientMongo
-        .db('tp2_final')
-        .collection('proyectos')
-        .updateMany(
-            {_id: new objectId(team_id)},
-            { $pull:
-                {
-                    'equipo.desarrolladores': { _id: new objectId(user_id) }
-                }
-            }
-        )
-
-    return result;
-}
-
-
 async function removeFromAllTeams(id){
     const clientMongo = await connection.getConnection();
     const result = await clientMongo
@@ -113,7 +95,7 @@ async function removeFromAllTeams(id){
             {},
             { $pull:
                 {
-                    'equipo.desarrolladores': { _id: new objectId(id) }
+                   'equipo.desarrolladores': { _id: new objectId(id) }
                 }
             }
         )
@@ -121,22 +103,6 @@ async function removeFromAllTeams(id){
     return result;
 }
 
-async function unassignFromAllTickets(id){
-    const clientMongo = await connection.getConnection();
-    const result = await clientMongo
-        .db('tp2_final')
-        .collection('proyectos')
-        .updateMany(
-            {'tickets.desarrollador_id': { _id: new objectId(id) } },
-            { $set:
-                {
-                    'tickets.$.desarrollador_id' : ""
-                }
-            }
-        )
-
-    return result;
-}
 
 async function getProject(id){
     const clientMongo = await connection.getConnection();
@@ -213,5 +179,5 @@ async function deleteProject(id){
 }
 
 
-module.exports = { getProjects, newProject, updateProjectData, getTickets, getTicket, getTeam, removeTeamMember, removeFromAllTeams,
-     unassignFromAllTickets, getProject, getAllTeams, updateTeam, updateTicket, deleteProject }
+module.exports = { getProjects, newProject, updateProjectData, getTickets, getTicket, getTeam, removeFromAllTeams,
+     getProject, getAllTeams, updateTeam, updateTicket, deleteProject }
