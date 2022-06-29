@@ -8,8 +8,8 @@ async function newProject(project) {
     return projects.newProject(project);
 }
 
-async function updateProject(project) {
-    return projects.updateProject(project);
+async function updateProjectData(project) {
+    return projects.updateProjectData(project);
 }
 
 
@@ -19,7 +19,7 @@ async function getTickets() {
 
 
 async function getTicket(id) {
-    return projects.getTickets(id);
+    return projects.getTicket(id);
 }
 
 
@@ -61,5 +61,5 @@ async function deleteProject(id) {
     return projects.deleteProject(id);
 }
 
-module.exports = { getProjects, newProject, updateProject, getTickets, getTicket, getTeam, removeTeamMember, removeFromAllTeams,
+module.exports = { getProjects, newProject, updateProjectData, getTickets, getTicket, getTeam, removeTeamMember, removeFromAllTeams,
     unassignFromAllTickets, getProject, getAllTeams, updateTeam, updateTicket, deleteProject }
